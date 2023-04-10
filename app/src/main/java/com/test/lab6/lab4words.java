@@ -24,7 +24,7 @@ public class lab4words extends AppCompatActivity implements View.OnClickListener
 
 
     String Logtag = lab4words.this.getClass().toString();
-    ListView listss;
+    ListView currentWord;
     Button back,add;
     ArrayList<String> arrayList = new ArrayList<>();
 
@@ -34,7 +34,7 @@ public class lab4words extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab4words);
 
-        listss = this.findViewById(R.id.list_view);
+        currentWord = this.findViewById(R.id.list_view);
         back = this.findViewById(R.id.back);
 
         back.setOnClickListener(this);
@@ -49,11 +49,11 @@ public class lab4words extends AppCompatActivity implements View.OnClickListener
 
             arrayList.add(c.getString(1) + " : " + c.getString(2));
             ArrayAdapter ar  = new ArrayAdapter(this, android.R.layout.simple_list_item_1,arrayList);
-            listss.setAdapter(ar);
+            currentWord.setAdapter(ar);
         }
 
 
-        listss.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        currentWord.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
@@ -70,13 +70,10 @@ public class lab4words extends AppCompatActivity implements View.OnClickListener
                 editIntent.putExtra("Mongol",mn);
                 editIntent.setClass(getApplicationContext(),addwords.class);
                 startActivity(editIntent);
-
-
-
             }
         });
 
-        listss.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        currentWord.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
             public boolean onItemLongClick(AdapterView<?> arg0, View v,
                                            int index, long arg3) {
@@ -93,9 +90,7 @@ public class lab4words extends AppCompatActivity implements View.OnClickListener
                     String en = data.split(" :")[0];
                     value.put("mode", "del");
                     value.put("en", en);
-
                     Uri urll = getContentResolver().insert(as, value);
-
 
 
                 });
@@ -129,14 +124,11 @@ public class lab4words extends AppCompatActivity implements View.OnClickListener
 
             arrayList.add( c.getString(1) + " : " + c.getString(2));
             ArrayAdapter ar  = new ArrayAdapter(this, android.R.layout.simple_list_item_1,arrayList);
-            listss.setAdapter(ar);
+            currentWord.setAdapter(ar);
         }
 
 
     }
-
-
-
     @Override
     public void onClick(View view) {
 
